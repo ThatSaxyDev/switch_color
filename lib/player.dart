@@ -2,13 +2,20 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
 class Player extends PositionComponent {
-  final _velocity = Vector2(0, 40.0);
+  Player({
+    this.playerRadius = 15,
+  });
+  final _velocity = Vector2.zero();
   final _gravity = 980;
   final _jumpSpeed = 350.0;
 
+  final double playerRadius;
+
   @override
   void onMount() {
-    position = Vector2(150, 100);
+    position = Vector2.zero();
+    size = Vector2.all(playerRadius * 2);
+    anchor = Anchor.center;
     super.onMount();
   }
 
@@ -17,10 +24,6 @@ class Player extends PositionComponent {
     super.update(dt);
     position += _velocity * dt;
     _velocity.y += _gravity * dt;
-
-    if (position.y == 200) {
-      jump();
-    }
   }
 
   @override
@@ -28,8 +31,8 @@ class Player extends PositionComponent {
     super.render(canvas);
     // 60fps == 60 times in a second
     canvas.drawCircle(
-      position.toOffset(),
-      15,
+      (size / 2).toOffset(),
+      playerRadius,
       Paint()..color = Colors.red,
     );
   }
