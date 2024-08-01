@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:switch_color/ground.dart';
+import 'package:switch_color/components/ground.dart';
 import 'package:switch_color/my_game.dart';
 
 class Player extends PositionComponent with HasGameRef<MyGame> {
