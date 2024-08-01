@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 
 import 'package:switch_color/my_game.dart';
@@ -12,10 +13,12 @@ class RotatingCircle extends PositionComponent with HasGameRef<MyGame> {
     required super.position,
     required super.size,
     this.thickness = 10,
+    this.rotationSpeed = 2,
   })  : assert(size!.x == size.y),
         super(anchor: Anchor.center);
 
   final double thickness;
+  final double rotationSpeed;
 
   @override
   void onLoad() {
@@ -36,6 +39,16 @@ class RotatingCircle extends PositionComponent with HasGameRef<MyGame> {
         ),
       );
     }
+
+    add(
+      RotateEffect.to(
+        circle,
+        EffectController(
+          speed: rotationSpeed,
+          infinite: true,
+        ),
+      ),
+    );
   }
 }
 

@@ -62,5 +62,12 @@ class MyGame extends FlameGame with TapCallbacks {
         size: Vector2(200, 200),
       ),
     );
+
+    world.add(
+      RotatingCircle(
+        position: Vector2(0, -250),
+        size: Vector2(200, 200),
+      ),
+    );
   }
 }
