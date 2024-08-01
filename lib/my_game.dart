@@ -9,8 +9,16 @@ import 'package:switch_color/components/rotating_circles.dart';
 class MyGame extends FlameGame with TapCallbacks {
   late Player myPlayer;
 
-  MyGame()
-      : super(
+  final List<Color> gameColors;
+
+  MyGame({
+    this.gameColors = const [
+      Colors.redAccent,
+      Colors.greenAccent,
+      Colors.blueAccent,
+      Colors.yellowAccent,
+    ],
+  }) : super(
           camera: CameraComponent.withFixedResolution(
             width: 600,
             height: 1000,
@@ -22,7 +30,7 @@ class MyGame extends FlameGame with TapCallbacks {
 
   @override
   void onMount() {
-    world.add(myPlayer = Player());
+    world.add(myPlayer = Player(position: Vector2(0, 250)));
     world.add(Ground(position: Vector2(0, 400)));
     generateGameComponents();
 
