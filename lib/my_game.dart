@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:switch_color/ground.dart';
 import 'package:switch_color/player.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -21,6 +22,7 @@ class MyGame extends FlameGame with TapCallbacks {
   @override
   void onMount() {
     world.add(myPlayer = Player());
+    world.add(Ground(position: Vector2(0, 400)));
 
     world.add(
       RectangleComponent(
