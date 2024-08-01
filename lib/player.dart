@@ -7,7 +7,7 @@ class Player extends PositionComponent {
   });
   final _velocity = Vector2.zero();
   final _gravity = 980;
-  final _jumpSpeed = 350.0;
+  final _jumpSpeed = 450.0;
 
   final double playerRadius;
 
