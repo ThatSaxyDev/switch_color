@@ -13,7 +13,7 @@ class RotatingCircle extends PositionComponent with HasGameRef<MyGame> {
   RotatingCircle({
     required super.position,
     required super.size,
-    this.thickness = 10,
+    this.thickness = 8,
     this.rotationSpeed = 2,
   })  : assert(size!.x == size.y),
         super(anchor: Anchor.center);

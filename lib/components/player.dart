@@ -83,10 +83,9 @@ class Player extends PositionComponent
 
       other.removeFromParent();
     } else if (other is CircleArc) {
-      debugPrint(
-          'Player.onCollisionWithCircleArc($intersectionPoints, $other)');
+      debugPrint('Player.onCollisionWithCircleArc');
       if (_color != other.color) {
-        debugPrint('Game over');
+        gameRef.gameOver();
       }
     }
   }
