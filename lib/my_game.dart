@@ -21,7 +21,7 @@ class MyGame extends FlameGame with TapCallbacks {
   }) : super(
           camera: CameraComponent.withFixedResolution(
             width: 600,
-            height: 1000,
+            height: 1200,
           ),
         );
 
@@ -31,7 +31,7 @@ class MyGame extends FlameGame with TapCallbacks {
   @override
   void onMount() {
     world.add(myPlayer = Player(position: Vector2(0, 250)));
-    world.add(Ground(position: Vector2(0, 400)));
+    world.add(Ground(position: Vector2(0, 500)));
     generateGameComponents();
 
     super.onMount();
@@ -59,13 +59,6 @@ class MyGame extends FlameGame with TapCallbacks {
     world.add(
       RotatingCircle(
         position: Vector2(0, 100),
-        size: Vector2(200, 200),
-      ),
-    );
-
-    world.add(
-      RotatingCircle(
-        position: Vector2(0, -250),
         size: Vector2(200, 200),
       ),
     );

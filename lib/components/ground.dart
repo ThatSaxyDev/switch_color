@@ -2,7 +2,8 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
 class Ground extends PositionComponent {
-  static const String keyName = 'single-ground-key';
+  static const String keyName = 'single_ground_key';
+
   Ground({required super.position})
       : super(
           size: Vector2(200, 2),
@@ -10,11 +11,21 @@ class Ground extends PositionComponent {
           key: ComponentKey.named(keyName),
         );
 
+  late Sprite fingerSprite;
+
+  @override
+  Future<void> onMount() async {
+    super.onMount();
+    fingerSprite = await Sprite.load('tapicon.png');
+  }
+
   @override
   void render(Canvas canvas) {
-    canvas.drawRect(
-      Rect.fromLTWH(0, 0, width, height),
-      Paint()..color = Colors.white,
+    fingerSprite.render(
+      canvas,
+      position: Vector2(56, 0),
+      size: Vector2(100, 100),
+      overridePaint: Paint()..color = Colors.white,
     );
   }
 }
