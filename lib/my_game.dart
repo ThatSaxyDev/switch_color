@@ -67,6 +67,9 @@ class MyGame extends FlameGame with TapCallbacks, HasCollisionDetection {
     world.add(ColorSwitcher(
       position: Vector2(0, -120),
     ));
+    world.add(ColorSwitcher(
+      position: Vector2(0, -520),
+    ));
     world.add(
       RotatingCircle(
         position: Vector2(0, 100),
@@ -79,6 +82,12 @@ class MyGame extends FlameGame with TapCallbacks, HasCollisionDetection {
         size: Vector2(200, 200),
       ),
     );
+    world.add(
+      RotatingCircle(
+        position: Vector2(0, -730),
+        size: Vector2(200, 200),
+      ),
+    );
   }
 
   void gameOver() {
@@ -86,5 +95,15 @@ class MyGame extends FlameGame with TapCallbacks, HasCollisionDetection {
       element.removeFromParent();
     }
     _initializeGame();
+  }
+
+  bool get isGamePaused => paused;
+
+  void pauseGame() {
+    pauseEngine();
+  }
+
+  void resumeGame() {
+    resumeEngine();
   }
 }

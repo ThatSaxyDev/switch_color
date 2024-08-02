@@ -25,7 +25,6 @@ class Ground extends PositionComponent {
       canvas,
       position: Vector2(56, 0),
       size: Vector2(100, 100),
-      overridePaint: Paint()..color = Colors.white,
     );
   }
 }

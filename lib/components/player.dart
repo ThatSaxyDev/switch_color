@@ -83,7 +83,6 @@ class Player extends PositionComponent
 
       other.removeFromParent();
     } else if (other is CircleArc) {
-      debugPrint('Player.onCollisionWithCircleArc');
       if (_color != other.color) {
         gameRef.gameOver();
       }
