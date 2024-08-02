@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame/rendering.dart';
 import 'package:flutter/material.dart';
 
 class Ground extends PositionComponent {
@@ -17,6 +18,7 @@ class Ground extends PositionComponent {
   Future<void> onMount() async {
     super.onMount();
     fingerSprite = await Sprite.load('tapicon.png');
+    decorator.addLast(PaintDecorator.tint(Colors.white));
   }
 
   @override

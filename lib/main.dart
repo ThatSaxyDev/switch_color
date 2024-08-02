@@ -38,20 +38,40 @@ class _HomeViewState extends State<HomeView> {
             SafeArea(
               child: Align(
                 alignment: Alignment.topLeft,
-                child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      if (_myGame.isGamePaused) {
-                        _myGame.resumeGame();
-                      } else {
-                        _myGame.pauseGame();
-                      }
-                    });
-                  },
-                  icon: Icon(
-                    _myGame.isGamePaused ? Icons.play_arrow : Icons.pause,
-                    size: 40,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          if (_myGame.isGamePaused) {
+                            _myGame.resumeGame();
+                          } else {
+                            _myGame.pauseGame();
+                          }
+                        });
+                      },
+                      icon: Icon(
+                        _myGame.isGamePaused ? Icons.play_arrow : Icons.pause,
+                        size: 40,
+                      ),
+                    ),
+
+                    //! score
+                    Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: ValueListenableBuilder(
+                        valueListenable: _myGame.currentScore,
+                        builder: (context, value, child) => Text(
+                          value.toString(),
+                          style: const TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

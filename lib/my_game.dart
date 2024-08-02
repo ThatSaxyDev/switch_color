@@ -1,4 +1,3 @@
-
 import 'package:flame/components.dart';
 import 'package:flame/rendering.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +7,15 @@ import 'package:switch_color/components/player.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:switch_color/components/rotating_circles.dart';
+import 'package:switch_color/components/star_component.dart';
 
 class MyGame extends FlameGame
     with TapCallbacks, HasCollisionDetection, HasDecorator, HasTimeScale {
   late Player myPlayer;
 
   final List<Color> gameColors;
+
+  ValueNotifier<int> currentScore = ValueNotifier(0);
 
   MyGame({
     this.gameColors = const [
@@ -45,6 +47,7 @@ class MyGame extends FlameGame
   }
 
   void _initializeGame() {
+    currentScore.value = 0;
     world.add(myPlayer = Player(position: Vector2(0, 350)));
     world.add(Ground(position: Vector2(0, 500)));
     camera.moveTo(Vector2.zero());
@@ -86,15 +89,31 @@ class MyGame extends FlameGame
       ),
     );
     world.add(
+      StarComponent(
+        position: Vector2(0, -320),
+      ),
+    );
+    world.add(
       RotatingCircle(
         position: Vector2(0, -320),
-        size: Vector2(200, 200),
+        size: Vector2(150, 150),
+      ),
+    );
+    world.add(
+      RotatingCircle(
+        position: Vector2(0, -320),
+        size: Vector2(190, 190),
       ),
     );
     world.add(
       RotatingCircle(
         position: Vector2(0, -730),
         size: Vector2(200, 200),
+      ),
+    );
+    world.add(
+      StarComponent(
+        position: Vector2(0, -730),
       ),
     );
   }
@@ -120,5 +139,9 @@ class MyGame extends FlameGame
     (decorator as PaintDecorator).addBlur(0);
     timeScale = 1;
     // resumeEngine();
+  }
+
+  void increaseScore() {
+    currentScore.value++;
   }
 }

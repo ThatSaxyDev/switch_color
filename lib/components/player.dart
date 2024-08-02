@@ -1,4 +1,3 @@
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:switch_color/components/color_switcher.dart';
 import 'package:switch_color/components/ground.dart';
 import 'package:switch_color/components/rotating_circles.dart';
+import 'package:switch_color/components/star_component.dart';
 import 'package:switch_color/my_game.dart';
 
 class Player extends PositionComponent
@@ -85,6 +85,10 @@ class Player extends PositionComponent
       if (_color != other.color) {
         gameRef.gameOver();
       }
+    } else if (other is StarComponent) {
+      other.removeFromParent();
+      //! increase score point
+      gameRef.increaseScore();
     }
   }
 }
