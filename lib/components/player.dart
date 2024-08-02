@@ -13,7 +13,9 @@ class Player extends PositionComponent
   Player({
     required super.position,
     this.playerRadius = 12,
-  });
+  }) : super(
+          priority: 20,
+        );
   final _velocity = Vector2.zero();
   final _gravity = 980;
   final _jumpSpeed = 450.0;
@@ -86,6 +88,7 @@ class Player extends PositionComponent
         gameRef.gameOver();
       }
     } else if (other is StarComponent) {
+      other.showCollectEffect();
       other.removeFromParent();
       //! increase score point
       gameRef.increaseScore();

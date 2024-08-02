@@ -79,54 +79,55 @@ class _HomeViewState extends State<HomeView> {
             Container(
               color: Colors.black45,
               child: SafeArea(
-                  child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'PAUSED',
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'PAUSED',
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _myGame.resumeGame();
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.play_arrow,
-                            size: 60,
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _myGame.resumeGame();
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.play_arrow,
+                              size: 60,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _myGame.resumeGame();
-                              _myGame.gameOver();
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.restart_alt,
-                            size: 60,
+                          const SizedBox(
+                            width: 10,
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _myGame.resumeGame();
+                                _myGame.gameOver();
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.restart_alt,
+                              size: 60,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              )),
+              ),
             ),
         ],
       ),

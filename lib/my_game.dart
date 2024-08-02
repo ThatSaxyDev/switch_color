@@ -83,6 +83,11 @@ class MyGame extends FlameGame
       position: Vector2(0, -520),
     ));
     world.add(
+      StarComponent(
+        position: Vector2(0, 100),
+      ),
+    );
+    world.add(
       RotatingCircle(
         position: Vector2(0, 100),
         size: Vector2(200, 200),
