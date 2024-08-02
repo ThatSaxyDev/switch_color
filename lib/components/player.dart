@@ -1,6 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:switch_color/components/color_switcher.dart';
 import 'package:switch_color/components/ground.dart';
@@ -90,8 +91,8 @@ class Player extends PositionComponent
     } else if (other is StarComponent) {
       other.showCollectEffect();
       other.removeFromParent();
-      //! increase score point
       gameRef.increaseScore();
+      FlameAudio.play('collect.wav');
     }
   }
 }
