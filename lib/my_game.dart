@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
 import 'package:flame/rendering.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +37,19 @@ class MyGame extends FlameGame
   Color backgroundColor() => const Color(0xff222222);
 
   @override
-  void onLoad() {
+  Future<void> onLoad() async {
+    await super.onLoad();
     decorator = PaintDecorator.blur(0);
     FlameAudio.bgm.initialize();
-    super.onLoad();
+    await Flame.images.loadAll([
+      'tapicon.png',
+      'staricon.png',
+    ]);
+    await FlameAudio.audioCache.loadAll([
+      'background.mp3',
+      'collect.wav',
+      'gameover.wav',
+    ]);
   }
 
   @override
@@ -54,7 +64,7 @@ class MyGame extends FlameGame
     world.add(Ground(position: Vector2(0, 500)));
     camera.moveTo(Vector2.zero());
     generateGameComponents();
-    FlameAudio.bgm.play('background.mp3', volume: 0.5);
+    // FlameAudio.bgm.play('background.mp3', volume: 0.5);
   }
 
   @override

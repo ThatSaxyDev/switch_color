@@ -13,6 +13,7 @@ class ColorSwitcher extends PositionComponent
   }) : super(anchor: Anchor.center, size: Vector2.all(radius * 2));
 
   final double radius;
+  final _switcherPaint = Paint();
 
   @override
   void onLoad() {
@@ -40,7 +41,7 @@ class ColorSwitcher extends PositionComponent
         i * sweep,
         sweep,
         true,
-        Paint()..color = arcColors[i],
+        _switcherPaint..color = arcColors[i],
       );
     }
   }

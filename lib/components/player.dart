@@ -25,6 +25,8 @@ class Player extends PositionComponent
 
   Color _color = Colors.white;
 
+  final _playerPaint = Paint();
+
   @override
   void onLoad() {
     super.onLoad();
@@ -68,7 +70,7 @@ class Player extends PositionComponent
     canvas.drawCircle(
       (size / 2).toOffset(),
       playerRadius,
-      Paint()..color = _color,
+      _playerPaint..color = _color,
     );
   }
 
@@ -86,6 +88,7 @@ class Player extends PositionComponent
       other.removeFromParent();
     } else if (other is CircleArc) {
       if (_color != other.color) {
+        FlameAudio.play('gameover.wav', volume: 0.5);
         gameRef.gameOver();
       }
     } else if (other is StarComponent) {

@@ -63,9 +63,9 @@ class _HomeViewState extends State<HomeView> {
                       child: ValueListenableBuilder(
                         valueListenable: _myGame.currentScore,
                         builder: (context, value, child) => Text(
-                          value.toString(),
+                          'Score: $value',
                           style: const TextStyle(
-                            fontSize: 40,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
