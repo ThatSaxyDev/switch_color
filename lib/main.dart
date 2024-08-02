@@ -57,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
             ),
           if (_myGame.isGamePaused)
             Container(
-              color: Colors.black.withOpacity(0.5),
+              color: Colors.black45,
               child: SafeArea(
                   child: Center(
                 child: Column(

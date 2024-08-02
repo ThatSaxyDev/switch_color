@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -24,7 +23,8 @@ class Player extends PositionComponent
   Color _color = Colors.white;
 
   @override
-  FutureOr<void> onLoad() {
+  void onLoad() {
+    super.onLoad();
     add(
       CircleHitbox(
         radius: playerRadius,
@@ -32,7 +32,6 @@ class Player extends PositionComponent
         collisionType: CollisionType.active,
       ),
     );
-    return super.onLoad();
   }
 
   @override
