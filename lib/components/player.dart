@@ -96,6 +96,7 @@ class Player extends PositionComponent
       other.removeFromParent();
       gameRef.increaseScore();
       FlameAudio.play('collect.wav');
+      gameRef.checkToGenerateNextBatch(other);
     }
   }
 }
