@@ -1,18 +1,39 @@
+import 'dart:async';
+
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:switch_color/components/color_switcher.dart';
 import 'package:switch_color/components/ground.dart';
+import 'package:switch_color/components/rotating_circles.dart';
 import 'package:switch_color/my_game.dart';
 
-class Player extends PositionComponent with HasGameRef<MyGame> {
+class Player extends PositionComponent
+    with HasGameRef<MyGame>, CollisionCallbacks {
   Player({
     required super.position,
-    this.playerRadius = 15,
+    this.playerRadius = 12,
   });
   final _velocity = Vector2.zero();
   final _gravity = 980;
   final _jumpSpeed = 450.0;
 
   final double playerRadius;
+
+  Color _color = Colors.white;
+
+  @override
+  FutureOr<void> onLoad() {
+    add(
+      CircleHitbox(
+        radius: playerRadius,
+        anchor: anchor,
+        collisionType: CollisionType.active,
+      ),
+    );
+    return super.onLoad();
+  }
 
   @override
   void onMount() {
@@ -45,11 +66,28 @@ class Player extends PositionComponent with HasGameRef<MyGame> {
     canvas.drawCircle(
       (size / 2).toOffset(),
       playerRadius,
-      Paint()..color = Colors.red,
+      Paint()..color = _color,
     );
   }
 
   void jump() {
     _velocity.y = -_jumpSpeed;
+  }
+
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollision(intersectionPoints, other);
+
+    if (other is ColorSwitcher) {
+      _color = gameRef.gameColors.random();
+
+      other.removeFromParent();
+    } else if (other is CircleArc) {
+      debugPrint(
+          'Player.onCollisionWithCircleArc($intersectionPoints, $other)');
+      if (_color != other.color) {
+        debugPrint('Game over');
+      }
+    }
   }
 }
